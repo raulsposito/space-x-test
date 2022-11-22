@@ -8,6 +8,7 @@ function Launches() {
   const [launches, setLaunches] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [favorites, setFavorites] = useState([])
+  const [selected, setSelected] = useState('Launches')
 
   const editSearchTerm = (e) => {
     setSearchTerm(e.target.value)
@@ -23,7 +24,10 @@ function Launches() {
 
   useEffect(() => {
     const prevSelectedFavorites = JSON.parse(localStorage.getItem('space-x-test'))
-    setFavorites(prevSelectedFavorites)
+    if (prevSelectedFavorites !== null) {
+        setFavorites(prevSelectedFavorites)
+    }
+    else setFavorites([])
   }, [])
   
 
@@ -38,10 +42,10 @@ function Launches() {
     }
   }
 
-  const handleIsFavorite = (id) => {
-    console.log(id)
+  const handleIsFavorite = (card) => {
+    console.log(card)
     const newFavoritesClone = [...favorites]
-    const isFav = newFavoritesClone.filter(f => f.flight_number.includes(id))
+    const isFav = newFavoritesClone.filter(f => f.flight_number.includes(card.id))
     if (isFav) {
         return true;
     }
@@ -53,11 +57,22 @@ function Launches() {
   const saveToLocalStorage = (favorites) => {
     localStorage.setItem('space-x-test', JSON.stringify(favorites))
   }
+
+  const handleValueChange = (event) => {
+    console.log(event)
+    setSelected(event)
+  }
   
   return (
     <div className='launchesContainer'>
         <div className='title'>Launches</div>
         <div className='cardWrapper'>
+
+        <select value={selected} onChange={(value) => handleValueChange(value.target.value)} className='select'>
+            <option value="Launches">Launches</option>
+            <option value="Favorites">Favorites</option>
+        </select>
+
             <div className='searchBar'>
                 <p>Total({launches.length})</p>
                 <div className="relative mt-1 rounded-md shadow-sm">
@@ -73,8 +88,12 @@ function Launches() {
                     />
                 </div>
             </div>
-            {launches && filteredSearch.map((launch, id)=> (
+            {launches && (selected === 'Launches') && filteredSearch.map((launch, id)=> (
                 <Card key={id} id={launch.flight_number} handleFavorites={addFavorite} isFavorite={(launch) => handleIsFavorite(launch.flight_number)} title={launch.rocket.rocket_name} subtitle={launch.mission_name} img={launch.links.mission_patch} date={launch.launch_date_local} />
+            ))}
+
+            {favorites && (selected === 'Favorites') && favorites.map((launch, id)=> (
+                <Card key={id} id={launch.flight_number} handleFavorites={addFavorite} isFavorite={(launch) => handleIsFavorite(launch.flight_number)} title={launch.title} subtitle={launch.mission_name} img={launch.img} date={launch.date} />
             ))}
         </div>
     </div>

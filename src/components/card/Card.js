@@ -26,7 +26,7 @@ function Card(props) {
             <div className='subtitle'>{props.subtitle}</div>
             <div className='dateAndFav'>
                 <div className='date'>{getFormattedDate()}</div>
-                <div className='favIcon' onClick={() => props.handleFavorites(props.id)}>{props.isFavorite ? "★" : "☆" }</div>
+                <div className='favIcon' onClick={() => props.handleFavorites(props)}>{props.isFavorite ? "★" : "☆" }</div>
             </div>
         </div>
     </div>

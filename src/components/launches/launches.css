@@ -10,6 +10,9 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+.launchesContainer .cardWrapper .select {
+    margin: 12px 36px;
+}
 .launchesContainer .cardWrapper .searchBar {
     display: flex;
     height: 10vh;
