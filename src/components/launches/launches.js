@@ -93,7 +93,7 @@ function Launches() {
             ))}
 
             {favorites && (selected === 'Favorites') && favorites.map((launch, id)=> (
-                <Card key={id} id={launch.flight_number} handleFavorites={addFavorite} isFavorite={(launch) => handleIsFavorite(launch.flight_number)} title={launch.title} subtitle={launch.mission_name} img={launch.img} date={launch.date} />
+                <Card key={id} id={launch.flight_number} handleFavorites={addFavorite} isFavorite={(launch) => handleIsFavorite(launch.id)} title={launch.title} subtitle={launch.mission_name} img={launch.img} date={launch.date} />
             ))}
         </div>
     </div>
