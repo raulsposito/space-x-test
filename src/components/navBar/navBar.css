@@ -1,0 +1,11 @@
+.navbarWrapper {
+    background-color: rgb(186, 186, 186);
+    height: 5vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navbarWrapper .title {
+    color: black;
+}

@@ -2,12 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import Launches from './components/launches/launches';
+import Rocket from './components/rocket/rocket';
+
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
 import reportWebVitals from './reportWebVitals';
+
+const router = createBrowserRouter([
+  {
+    path: "/launches",
+    element: <Launches />,
+  },
+  {
+    path: "/rocket/:id",
+    element: <Rocket />,
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 

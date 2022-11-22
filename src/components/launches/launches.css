@@ -1,0 +1,20 @@
+.launchesContainer {
+    padding: 12px 36px;
+}
+.launchesContainer .title {
+    font-size: 22px;
+    margin-left: 36px;
+}
+.launchesContainer .cardWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.launchesContainer .cardWrapper .searchBar {
+    display: flex;
+    height: 10vh;
+    width: 100%;
+    justify-content: space-between;
+    margin: 36px;
+    align-items: center;
+}
