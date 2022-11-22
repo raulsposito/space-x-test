@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './launches.css'
 
 import Card from '../card/Card';
-import { findAllByAltText } from '@testing-library/react';
 
 function Launches() {
 
@@ -21,6 +20,12 @@ function Launches() {
         .then((response) => response.json())
         .then((data) => setLaunches(data));
   }, [])
+
+  useEffect(() => {
+    const prevSelectedFavorites = JSON.parse(localStorage.getItem('space-x-test'))
+    setFavorites(prevSelectedFavorites)
+  }, [])
+  
 
   const addFavorite = (card) => {
     if (favorites.includes(card)) {
